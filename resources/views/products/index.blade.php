@@ -17,28 +17,14 @@
                 </tr>
                 </thead>
                 <tbody>
-{{--                {{$products}}--}}
-                {{print_r($products)}}
-                {{var_dump($products)}}
                 @foreach($products as $product )
                 <tr>
                     <tr>
                     <td>   {{$product->title}}</td>
+                    <td>   {{$product->coment}}</td>
                     <td>   {{$product->category_name}}</td>
                     <td>   {{$product->category_name}}</td>
-{{--                        <td>{{$key->title}}</td>--}}
-{{--                        <td>{{$key->category_id['name']}}</td>--}}
-{{--                        {{ var_dump($product->available) }}--}}
 
-{{--                        <td>--}}
-{{--                            <a href="{{ route('products.edit',$contact->id)}}" class="btn btn-primary">Edit</a>--}}
-{{--                        </td>--}}
-{{--                        <td>--}}
-{{--                            <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">--}}
-{{--                                @csrf--}}
-{{--                                @method('DELETE')--}}
-{{--                                <button class="btn btn-danger" type="submit">Delete</button>--}}
-{{--                            </form>--}}
                         </td>
                     </tr>
                 @endforeach

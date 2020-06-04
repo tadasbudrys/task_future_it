@@ -6,7 +6,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<p>asa</p>
+<a href="{{ url('/products/create')}}"> Create </a>
 <div class="container">
     @yield('main')
 </div>

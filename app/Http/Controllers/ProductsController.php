@@ -23,6 +23,7 @@ class ProductsController extends Controller
                 'product.category_id',
                 'product.subcategory_id',
                 'product.title' ,
+                'product.coment' ,
                 'category.category_name',
                 'subcategory.subcategory_name'
             )
