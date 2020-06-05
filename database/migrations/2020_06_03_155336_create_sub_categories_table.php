@@ -16,8 +16,15 @@ class CreateSubCategoriesTable extends Migration
         Schema::create( 'subcategory', function ( Blueprint $table ) {
             $table->increments( 'id' );
             $table->string( 'subcategory_name', 200 );
+            $table->integer( 'category_id' )->unsigned();
         } );
-    }
+
+        Schema::table('subcategory', function (Blueprint $table) {
+            $table->foreign('category_id')
+                ->references('id')->on('category')
+                ->onDelete('cascade');
+        });
+        }
 
     /**
      * Reverse the migrations.

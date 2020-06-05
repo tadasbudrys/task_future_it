@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Support\Facades\DB;
 use App\Category;
 use App\Products;
 use App\Sub_category;
 use Illuminate\Http\Request;
+use mysql_xdevapi\CollectionAdd;
 
 class ProductsController extends Controller
 {
@@ -17,36 +19,14 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = DB::table('product')
-            ->select(
-                'product.id',
-                'product.category_id',
-                'product.subcategory_id',
-                'product.title' ,
-                'product.coment' ,
-                'category.category_name',
-                'subcategory.subcategory_name'
-            )
-            ->join(
-                'category',
-                'product.category_id','=','category.id'
-            )
-            ->join(
-                'subcategory',
-                'product.subcategory_id','=','subcategory.id'
-            )
 
-            ->get();
-        //$products = Products::with('category');
-       // dd($products);
-//        $user = Products::find(1);
-//        foreach ($products->Categorys as $role) {
-//            echo dd($role->pivot->name);
-//        }
-//        $products->subCategorys()->name;
+        $getProducts = new Products();
+        $products = $getProducts->getAll();
 
-        return view('products.index')->with(['products' => $products]);
-//        return view('products.index', compact('products'));
+//        $a = new Category();
+//        $b = $a->getcategory(3)->get();
+
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -76,13 +56,15 @@ class ProductsController extends Controller
         $request->validate([
             'title'=>'required',
             'category'=>'required',
-            'subcategory'=>'required'
+            'subcategory'=>'required',
+            'comment'=>'required'
         ]);
 
         $product = new Products([
             'title' => $request->get('title'),
             'category_id' => $request->get('category'),
             'subcategory_id' => $request->get('subcategory'),
+            'comment' => $request->get('comment'),
         ]);
         $product->save();
         return redirect('/products')->with('success', 'product saved!');
@@ -107,7 +89,32 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Products::find($id);
+
+        $subcategorysId = $product->category_id;
+
+//           dd($subcategorysId);
+//        $c = new Category();
+//        $categorys = $c->getcategory()->get();
+
+        $categorys = DB::table('category')->get();
+    //    dd($categorys);
+//        $categorys = $c->category_name;
+
+       // dd($categorys);
+//        $subcategorysId = $categorys->id;
+
+//        dd($subcategorysId);
+
+
+        $a = new Sub_category();
+        $subcategories =$a->getSubCategory($subcategorysId)->get();
+
+//        $categorys = Category::find($id)->get();
+
+
+
+        return view('products.edit', compact('product', 'subcategories', 'categorys'));
     }
 
     /**
@@ -119,7 +126,31 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'category'=>'required',
+            'subcategory'=>'required',
+            'comment'=>'required'
+        ]);
+
+        $product =  Products::find($id);
+        $product->title =  $request->get('title');
+        $product->category_id = $request->get('category');
+        $product->subcategory_id = $request->get('subcategory');
+        $product->comment = $request->get('comment');
+        $product->save();
+
+//        $category = Category::find($id);
+//        $category->category_name = $request->get('category');
+//        $category->save();
+//
+//
+//        $subcategory = Sub_category::find($id);
+//        $subcategory->category_ = $request->get('subcategory');
+//        $subcategory->save();
+
+
+        return redirect('/products')->with('success', 'Product updated!');
     }
 
     /**

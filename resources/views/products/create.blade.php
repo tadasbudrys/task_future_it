@@ -1,9 +1,11 @@
 @extends('base')
 
 @section('main')
+
+
     <div class="row">
         <div class="col-sm-8 offset-sm-2">
-            <h1 class="display-3">Add a contact</h1>
+            <h1 class="display-3">Add product</h1>
             <div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -24,27 +26,31 @@
                     </div>
                     <div class="form-group">
                         <label for="Title">Category:</label>
-                    <select  name="category" >
+                    <select class="form-control"   name="category" >
 
                     @foreach($categories as $categorie)
-                        <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
+                        <option  value="{{ $categorie->id }}">{{ $categorie->category_name }}</option>
                     @endforeach
                     </select>
                     </div>
 
                     <div class="form-group">
                         <label for="Title">Sub Category:</label>
-                        <select  name="subcategory" >
+                        <select class="form-control"  name="subcategory" >
 
                             @foreach($subcategories as $subcategorie)
-                                <option value="{{ $subcategorie->id }}">{{ $subcategorie->name }}</option>
+                                <option value="{{ $subcategorie->id }}">{{ $subcategorie->subcategory_name }}</option>
                             @endforeach
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="Title" >Comment</label>
+                        <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
 
 
-                    <button type="submit" class="btn btn-primary-outline">Add contact</button>
+                    <button type="submit" class="btn btn-primary">Add contact</button>
                 </form>
             </div>
         </div>

@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
             'title' => 'Malmar',
             'category_id' => '1',
             'subcategory_id' => '1',
-            'coment' => 'Nice tabe',
+            'comment' => 'Nice tabe',
         ]);
     }
 }

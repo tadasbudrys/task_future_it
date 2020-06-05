@@ -19,7 +19,7 @@ class Product extends Migration
             $table->integer( 'category_id' )->unsigned();
             $table->integer( 'subcategory_id' )->unsigned();
             $table->string( 'title' );
-            $table->string( 'coment' );
+            $table->string( 'comment' );
             $table->timestamp('created_at')->nullable();
         });
 

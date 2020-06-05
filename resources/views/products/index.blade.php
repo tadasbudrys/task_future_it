@@ -1,19 +1,19 @@
 @extends('base')
 
 @section('main')
+
+
+{{--    {{print_r($b)}}--}}
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="display-3">Contacts</h1>
+            <h1 class="display-3">Product Page</h1>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <td>ID</td>
                     <td>Name</td>
-                    <td>Email</td>
-                    <td>Job Title</td>
-                    <td>City</td>
-                    <td>Country</td>
-                    <td colspan = 2>Actions</td>
+                    <td>Comment</td>
+                    <td>Category name</td>
+                    <td>Sub category name</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -21,11 +21,11 @@
                 <tr>
                     <tr>
                     <td>   {{$product->title}}</td>
-                    <td>   {{$product->coment}}</td>
+                    <td>   {{$product->comment}}</td>
                     <td>   {{$product->category_name}}</td>
-                    <td>   {{$product->category_name}}</td>
+                    <td>   {{$product->subcategory_name}}</td>
 
-                        </td>
+                    <td>  <a href="{{ route('products.edit',$product->id)}}" class="btn btn-primary">Edit</a>    </td>
                     </tr>
                 @endforeach
                 </tbody>

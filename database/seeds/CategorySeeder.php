@@ -13,7 +13,13 @@ class CategorySeeder extends Seeder
     {
         DB::table('category')->insert([
             'category_name' => 'Miegamasis',
+        ]);
+        DB::table('category')->insert([
             'category_name' => 'Virtuve',
+        ]);
+
+        DB::table('category')->insert([
+            'category_name' => 'Vonios kambarys',
         ]);
     }
 }

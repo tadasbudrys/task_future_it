@@ -13,7 +13,12 @@ class SubCategorySeeder extends Seeder
     {
         DB::table('subcategory')->insert([
             'subcategory_name' => 'Stalas',
-            'subcategory_name' => 'Kede',
+            'category_id' => '1',
         ]);
+        DB::table('subcategory')->insert([
+            'subcategory_name' => 'Duso kabina',
+            'category_id' => '3',
+        ]);
+
     }
 }
