@@ -21,7 +21,7 @@
 
 
                     <div class="form-group">
-                        <label for="Title">First Name:</label>
+                        <label for="Title">Product Name:</label>
                         <input type="text" class="form-control" name="title"/>
                     </div>
                     <div class="form-group">
@@ -41,49 +41,14 @@
                         </select>
                     </div>
 
-
-{{--                    <div class="form-group">--}}
-{{--                        <label for="Title">Sub Category:</label>--}}
-{{--                        <select class="form-control"  name="subcategory" >--}}
-
-{{--                            @foreach($subcategories as $subcategorie)--}}
-{{--                                <option value="{{ $subcategorie->id }}">{{ $subcategorie->subcategory_name }}</option>--}}
-{{--                            @endforeach--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
-
                     <div class="form-group">
                         <label for="Title" >Comment</label>
                         <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-
-
                     <button type="submit" class="btn btn-primary">Add contact</button>
                 </form>
             </div>
         </div>
     </div>
-{{--    <script type="text/javascript">--}}
 
-{{--    $('#myselect').change(function(){--}}
-
-{{--    var select=   $( "#myselect option:selected" ).val();--}}
-{{--    console.log(select);--}}
-{{--    $.ajax({--}}
-{{--    url:"{{route('products.fetch')}}",--}}
-{{--    method:"GET",--}}
-{{--    data: {select:select},--}}
-{{--    dataType: 'JSON ',--}}
-{{--    success:function(response)--}}
-{{--    {--}}
-{{--    $("#subcategory option").remove();--}}
-{{--    console.log('response', response)--}}
-{{--    $.each(response, function (index, value) {--}}
-{{--    $("<option></option>", {value: value.id, text:value.subcategory_name}).appendTo('#subcategory');--}}
-{{--    });--}}
-
-{{--    }--}}
-{{--    })--}}
-{{--    });--}}
-{{--    </script>--}}
 @endsection
