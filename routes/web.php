@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('base');
+    return view('welcome');
 });
+Route::get('/products/fetch', 'ProductsController@fetch')->name('products.fetch');
 Route::resource('/products', 'ProductsController');
+

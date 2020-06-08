@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Title">Category:</label>
-                    <select class="form-control"   name="category" >
+                    <select class="form-control"   name="category" id = "myselect">
 
                     @foreach($categories as $categorie)
                         <option  value="{{ $categorie->id }}">{{ $categorie->category_name }}</option>
@@ -35,14 +35,22 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="Title">Sub Category:</label>
-                        <select class="form-control"  name="subcategory" >
-
-                            @foreach($subcategories as $subcategorie)
-                                <option value="{{ $subcategorie->id }}">{{ $subcategorie->subcategory_name }}</option>
-                            @endforeach
+                        <label for="Title">Sub category:</label>
+                        <select class="form-control"   name="subcategory"  data-dependent="category" id="subcategory">
+                            <option  value=""> Choose sub class</option>
                         </select>
                     </div>
+
+
+{{--                    <div class="form-group">--}}
+{{--                        <label for="Title">Sub Category:</label>--}}
+{{--                        <select class="form-control"  name="subcategory" >--}}
+
+{{--                            @foreach($subcategories as $subcategorie)--}}
+{{--                                <option value="{{ $subcategorie->id }}">{{ $subcategorie->subcategory_name }}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
 
                     <div class="form-group">
                         <label for="Title" >Comment</label>
@@ -55,4 +63,27 @@
             </div>
         </div>
     </div>
+{{--    <script type="text/javascript">--}}
+
+{{--    $('#myselect').change(function(){--}}
+
+{{--    var select=   $( "#myselect option:selected" ).val();--}}
+{{--    console.log(select);--}}
+{{--    $.ajax({--}}
+{{--    url:"{{route('products.fetch')}}",--}}
+{{--    method:"GET",--}}
+{{--    data: {select:select},--}}
+{{--    dataType: 'JSON ',--}}
+{{--    success:function(response)--}}
+{{--    {--}}
+{{--    $("#subcategory option").remove();--}}
+{{--    console.log('response', response)--}}
+{{--    $.each(response, function (index, value) {--}}
+{{--    $("<option></option>", {value: value.id, text:value.subcategory_name}).appendTo('#subcategory');--}}
+{{--    });--}}
+
+{{--    }--}}
+{{--    })--}}
+{{--    });--}}
+{{--    </script>--}}
 @endsection

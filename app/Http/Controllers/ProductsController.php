@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 
+use http\Env\Response;
 use Illuminate\Support\Facades\DB;
 use App\Category;
 use App\Products;
 use App\Sub_category;
 use Illuminate\Http\Request;
 use mysql_xdevapi\CollectionAdd;
+use App\Http\Requests;
 
 class ProductsController extends Controller
 {
@@ -22,10 +24,6 @@ class ProductsController extends Controller
 
         $getProducts = new Products();
         $products = $getProducts->getAll();
-
-//        $a = new Category();
-//        $b = $a->getcategory(3)->get();
-
         return view('products.index', compact('products'));
     }
 
@@ -39,9 +37,7 @@ class ProductsController extends Controller
 
         $categories = Category::get();
         $subcategories = Sub_category::get();
-//        return view::make('products.create', [
-//            'categories' => $categories
-//        ]);
+
       return view('products.create', compact('categories', 'subcategories'));
     }
 
@@ -90,31 +86,8 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Products::find($id);
-
-        $subcategorysId = $product->category_id;
-
-//           dd($subcategorysId);
-//        $c = new Category();
-//        $categorys = $c->getcategory()->get();
-
         $categorys = DB::table('category')->get();
-    //    dd($categorys);
-//        $categorys = $c->category_name;
-
-       // dd($categorys);
-//        $subcategorysId = $categorys->id;
-
-//        dd($subcategorysId);
-
-
-        $a = new Sub_category();
-        $subcategories =$a->getSubCategory($subcategorysId)->get();
-
-//        $categorys = Category::find($id)->get();
-
-
-
-        return view('products.edit', compact('product', 'subcategories', 'categorys'));
+        return view('products.edit', compact('product', 'categorys'));
     }
 
     /**
@@ -140,18 +113,9 @@ class ProductsController extends Controller
         $product->comment = $request->get('comment');
         $product->save();
 
-//        $category = Category::find($id);
-//        $category->category_name = $request->get('category');
-//        $category->save();
-//
-//
-//        $subcategory = Sub_category::find($id);
-//        $subcategory->category_ = $request->get('subcategory');
-//        $subcategory->save();
-
-
         return redirect('/products')->with('success', 'Product updated!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -163,4 +127,15 @@ class ProductsController extends Controller
     {
         //
     }
+
+
+    public  function fetch(Request $request)
+    {
+
+        $id = $request->get('select');
+        $subclas =Category::find($id)->getSubClassId;
+        return response()->json( $subclas, 200);
+
+    }
+
 }

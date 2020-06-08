@@ -14,10 +14,10 @@ class Category extends Model
         'category_name',
     ];
 
-    public function product()
+    public function getSubClassId()
     {
-        return $this->hasMany(Sub_category::class);
-//        return $this->belongsToMany('App\Sub_category', 'subcategory', 'category_id', 'id');
+        return $this->hasMany(Sub_category::class, 'category_id', 'id');
+
     }
 
     public function getcategory()
@@ -33,7 +33,6 @@ class Category extends Model
                 'subcategory',
                 'category.id' ,'=', 'subcategory.category_id'
             );
-//            ->where('category_id', '=', $categoryId)->distinct();
         return $subcategory;
     }
 

@@ -10928,3 +10928,8 @@ a.text-dark:focus {
   }
 }
 
+.welcomeHeader
+{
+  display: flex;
+  justify-content: center;
+}

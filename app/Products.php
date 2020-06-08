@@ -18,22 +18,6 @@ class Products extends Model
         'comment'
     ];
 
-//    public function categorys()
-//    {
-//        return $this->hasMany(Category::class, 'id' , 'category_id');
-////        return $this->belongsToMany('App\Category')
-////            ->using('App\Sub_category')
-////            ->withPivot([
-////                'name',
-////            ]);
-//    }
-//
-//    public function subCategorys()
-//    {
-//        return $this->hasOne(Sub_category::class,'id');
-//      //  return $this->belongsToMany('App\Sub_category', 'category_id', 'id');
-//    }
-
     public function  getAll()
     {
 
